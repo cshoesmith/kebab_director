@@ -36,7 +36,7 @@ export default function KebabTable({ shops }: KebabTableProps) {
               </td>
               <td className="px-6 py-4">
                 <a
-                  href={shop['Google'] && shop['Google'].startsWith('http') ? shop['Google'] : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${shop['Shop Name']}, ${shop['Suburb']} ${shop['Postcode']}, Australia`)}`}
+                  href={typeof shop['Google'] === 'string' && shop['Google'].startsWith('http') ? shop['Google'] : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${shop['Shop Name']}, ${shop['Suburb']} ${shop['Postcode']}, Australia`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-turkish-teal hover:text-turkish-red hover:underline"

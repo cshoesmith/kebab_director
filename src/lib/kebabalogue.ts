@@ -2,7 +2,7 @@ import Papa from 'papaparse';
 import geocodedData from '@/data/geocoded_shops.json';
 
 export interface KebabShop {
-  [key: string]: string | number; // Allow numbers for lat/lon
+  [key: string]: string | number | undefined | null; // Allow numbers for lat/lon and optional fields
 }
 
 const SHEET_ID = '1ywNVd7LYWZg1Vh5weRwaUdsklkqggI-tDbWAqcOKCL8';
