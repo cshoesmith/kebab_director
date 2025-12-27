@@ -11,7 +11,7 @@ export default async function Home() {
           <h1 className="text-5xl font-bold tracking-wider uppercase drop-shadow-md">Kebab Director</h1>
         </div>
         <div className="bg-white px-8 py-2 rounded-b-lg border-x-4 border-b-4 border-turkish-gold shadow-lg text-turkish-blue font-bold">
-          The Ultimate Guide to Sydney's Best Kebabs
+          The Ultimate Guide to Sydney&apos;s Best Kebabs
         </div>
       </div>
 

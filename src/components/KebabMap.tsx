@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap, CircleMarker } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility';
@@ -193,7 +193,7 @@ export default function KebabMap({ shops, userLocation, onMapReady }: KebabMapPr
             const address = `${shop['Shop Name']}, ${shop['Suburb']} ${shop['Postcode']}, Australia`;
             const coords = await geocodeAddress(address);
             if (coords) {
-              let newShop: any = { ...shop, ...coords };
+              const newShop: KebabShop & { lat: number; lon: number; distance?: number } = { ...shop, ...coords };
               // Check distance
               if (userLocation) {
                  const dist = calculateDistance(userLocation, { latitude: coords.lat, longitude: coords.lon });

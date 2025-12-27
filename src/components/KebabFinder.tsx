@@ -35,16 +35,26 @@ const SplashScreen = () => (
 
 export default function KebabFinder({ shops }: KebabFinderProps) {
   const [userLocation, setUserLocation] = useState<Coordinates | null>(null);
-  const [sortedShops, setSortedShops] = useState<any[]>([]);
+  const [sortedShops, setSortedShops] = useState<KebabShop[]>([]);
   const [loading, setLoading] = useState(true); // Start loading immediately
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [mapReady, setMapReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'map' | 'table'>('map');
 
-  useEffect(() => {
-    // Auto-trigger location on mount
-    handleGetLocation();
-  }, []);
+  const findBestShops = (userCoords: Coordinates, shops: KebabShop[]) => {
+    // Since we don't have coordinates in the CSV, we can't sort by distance.
+    // We will just display the shops as they are, but we could potentially filter by suburb if we had user's suburb.
+    // For now, we'll just pass them through but mark distance as unknown.
+    
+    const shopsWithDistance = shops.map(shop => {
+      return { ...shop, distance: Infinity };
+    });
+
+    // Just show the first 20 or so, or maybe random ones? 
+    // Or keep original order (Rank).
+    setSortedShops(shopsWithDistance);
+  };
 
   const handleGetLocation = () => {
     setLoading(true);
@@ -92,19 +102,11 @@ export default function KebabFinder({ shops }: KebabFinderProps) {
     );
   };
 
-  const findBestShops = (userCoords: Coordinates, shops: KebabShop[]) => {
-    // Since we don't have coordinates in the CSV, we can't sort by distance.
-    // We will just display the shops as they are, but we could potentially filter by suburb if we had user's suburb.
-    // For now, we'll just pass them through but mark distance as unknown.
-    
-    const shopsWithDistance = shops.map(shop => {
-      return { ...shop, distance: Infinity };
-    });
-
-    // Just show the first 20 or so, or maybe random ones? 
-    // Or keep original order (Rank).
-    setSortedShops(shopsWithDistance);
-  };
+  useEffect(() => {
+    // Auto-trigger location on mount
+    handleGetLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleMapReady = () => {
     setMapReady(true);

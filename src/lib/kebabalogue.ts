@@ -29,8 +29,8 @@ export async function getKebabalogueData(): Promise<KebabShop[]> {
         // Merge with pre-calculated geocoded data
         const mergedData = validData.map(shop => {
           const key = `${shop['Shop Name']}-${shop['Suburb']}`;
-          // @ts-ignore
-          const coords = geocodedData[key];
+          // @ts-expect-error - geocodedData is a JSON object with dynamic keys
+          const coords = (geocodedData as Record<string, { lat: number; lon: number }>)[key];
           if (coords) {
             return { ...shop, lat: coords.lat, lon: coords.lon };
           }
@@ -39,7 +39,7 @@ export async function getKebabalogueData(): Promise<KebabShop[]> {
 
         resolve(mergedData);
       },
-      error: (error: any) => {
+      error: (error: unknown) => {
         reject(error);
       },
     });
