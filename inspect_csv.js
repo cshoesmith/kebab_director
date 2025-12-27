@@ -8,8 +8,14 @@ async function inspectCsv() {
     const lines = text.split('\n');
     if (lines.length > 0) {
       console.log('Headers:', lines[0]);
-      if (lines.length > 1) {
-        console.log('First Row:', lines[1]);
+      // Parse a few lines to find one with a Google link
+      const Papa = require('papaparse');
+      const results = Papa.parse(text, { header: true });
+      const shopsWithGoogle = results.data.filter(s => s['Shop Name'] === 'Merrifield Kebab House');
+      
+      if (shopsWithGoogle.length > 0) {
+        console.log('Shop:', shopsWithGoogle[0]['Shop Name']);
+        console.log('Google Link:', shopsWithGoogle[0]['Google']);
       }
     } else {
       console.log('Empty CSV');

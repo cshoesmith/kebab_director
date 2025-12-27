@@ -1,0 +1,108 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Map pin background -->
+  <defs>
+    <linearGradient id="pinGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFA43A"/>
+      <stop offset="100%" stop-color="#FF7A1A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer pin shape -->
+  <path
+    d="M128 16
+       C83 16 48 51 48 96
+       C48 146 96 192 122 231
+       C124.5 234.5 127 240 128 240
+       C129 240 131.5 234.5 134 231
+       C160 192 208 146 208 96
+       C208 51 173 16 128 16Z"
+    fill="url(#pinGradient)"
+    stroke="#D85A00"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+
+  <!-- Inner circle for content -->
+  <circle
+    cx="128"
+    cy="100"
+    r="64"
+    fill="#FFF7EC"
+    stroke="#E08A3A"
+    stroke-width="4"
+  />
+
+  <!-- Pita bread -->
+  <path
+    d="M88 132
+       C88 110 100 84 128 84
+       C156 84 168 110 168 132
+       C168 144 160 152 128 152
+       C96 152 88 144 88 132Z"
+    fill="#F2C27B"
+    stroke="#B87932"
+    stroke-width="4"
+    stroke-linejoin="round"
+  />
+
+  <!-- Toasted dots on pita -->
+  <g fill="#B87932">
+    <circle cx="110" cy="118" r="2" />
+    <circle cx="120" cy="126" r="2" />
+    <circle cx="138" cy="120" r="2" />
+    <circle cx="146" cy="130" r="2" />
+    <circle cx="132" cy="136" r="2" />
+    <circle cx="116" cy="136" r="2" />
+  </g>
+
+  <!-- Meat layer -->
+  <path
+    d="M98 124
+       C104 118 112 116 120 118
+       C128 120 136 118 144 116
+       C152 114 160 116 166 122
+       C162 132 152 140 140 142
+       C128 144 116 142 106 138
+       C102 136 100 130 98 124Z"
+    fill="#8B4A2B"
+    stroke="#5E2F1A"
+    stroke-width="3"
+    stroke-linejoin="round"
+  />
+
+  <!-- Lettuce -->
+  <path
+    d="M96 112
+       C100 106 108 102 116 104
+       C120 96 132 96 138 104
+       C146 100 156 102 162 110
+       C156 114 150 116 144 116
+       C138 118 132 118 126 118
+       C118 118 110 118 102 116
+       C100 116 98 114 96 112Z"
+    fill="#4CAF50"
+    stroke="#2E7D32"
+    stroke-width="3"
+    stroke-linejoin="round"
+  />
+
+  <!-- Tomato slices -->
+  <path
+    d="M110 108
+       C114 106 118 106 122 108
+       C120 112 116 114 112 114
+       C110 112 110 110 110 108Z"
+    fill="#E53935"
+    stroke="#B71C1C"
+    stroke-width="2"
+  />
+  <path
+    d="M136 108
+       C140 106 144 106 148 108
+       C146 112 142 114 138 114
+       C136 112 136 110 136 108Z"
+    fill="#E53935"
+    stroke="#B71C1C"
+    stroke-width="2"
+  />
+</svg>

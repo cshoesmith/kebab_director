@@ -1,7 +1,8 @@
 import Papa from 'papaparse';
+import geocodedData from '@/data/geocoded_shops.json';
 
 export interface KebabShop {
-  [key: string]: string; // Flexible for now until we know the columns
+  [key: string]: string | number; // Allow numbers for lat/lon
 }
 
 const SHEET_ID = '1ywNVd7LYWZg1Vh5weRwaUdsklkqggI-tDbWAqcOKCL8';
@@ -21,10 +22,22 @@ export async function getKebabalogueData(): Promise<KebabShop[]> {
         // Filter out rows that don't have a valid Shop Name or are the disclaimer
         const validData = data.filter(shop => 
           shop['Shop Name'] && 
-          shop['Shop Name'].trim() !== '' &&
-          !shop['Shop Name'].includes('THE KEBABALOGUE WILL NOT BE UPDATED')
+          String(shop['Shop Name']).trim() !== '' &&
+          !String(shop['Shop Name']).includes('THE KEBABALOGUE WILL NOT BE UPDATED')
         );
-        resolve(validData);
+
+        // Merge with pre-calculated geocoded data
+        const mergedData = validData.map(shop => {
+          const key = `${shop['Shop Name']}-${shop['Suburb']}`;
+          // @ts-ignore
+          const coords = geocodedData[key];
+          if (coords) {
+            return { ...shop, lat: coords.lat, lon: coords.lon };
+          }
+          return shop;
+        });
+
+        resolve(mergedData);
       },
       error: (error: any) => {
         reject(error);

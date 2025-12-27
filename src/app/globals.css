@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #FAF0E6; /* Turkish Cream */
   --foreground: #171717;
+  --turkish-red: #C8102E;
+  --turkish-teal: #00798C;
+  --turkish-gold: #D4AF37;
+  --turkish-cream: #FAF0E6;
+  --turkish-blue: #1D3F72;
 }
 
 @theme inline {
@@ -10,6 +15,11 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-turkish-red: var(--turkish-red);
+  --color-turkish-teal: var(--turkish-teal);
+  --color-turkish-gold: var(--turkish-gold);
+  --color-turkish-cream: var(--turkish-cream);
+  --color-turkish-blue: var(--turkish-blue);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +33,38 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.turkish-tile-bg {
+  background-color: var(--turkish-cream);
+  background-image: 
+    radial-gradient(var(--turkish-teal) 1px, transparent 1px), 
+    radial-gradient(var(--turkish-teal) 1px, var(--turkish-cream) 1px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.turkish-border {
+  border: 4px solid var(--turkish-gold);
+  box-shadow: 0 0 0 4px var(--turkish-red) inset;
+}
+
+.turkish-card {
+  background-color: white;
+  border: 2px solid var(--turkish-gold);
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 0 var(--turkish-blue);
+}
+
+.turkish-btn {
+  background-color: var(--turkish-red);
+  color: white;
+  border: 2px solid var(--turkish-gold);
+  transition: all 0.2s;
+}
+
+.turkish-btn:hover {
+  background-color: var(--turkish-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 var(--turkish-gold);
 }
